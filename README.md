@@ -10,88 +10,88 @@ The Shell behaves like the standard one in the terminal.
 It supports several functions and system calls.
 
 ## Allowed
-### String Manipulation and Memory Handling Functions
-all functions from string.h
+	### String Manipulation and Memory Handling Functions
+	all functions from string.h
 
-### File & Directory Operations
-access – Check a file’s existence or permissions (read/write/execute).
+	### File & Directory Operations
+	access – Check a file’s existence or permissions (read/write/execute).
 
-chdir – Change the current working directory.
+	chdir – Change the current working directory.
 
-open – Open (or create) a file and return a file descriptor.
+	open – Open (or create) a file and return a file descriptor.
 
-close – Close a file descriptor.
+	close – Close a file descriptor.
 
-read – Read bytes from a file descriptor.
+	read – Read bytes from a file descriptor.
 
-write – Write bytes to a file descriptor.
+	write – Write bytes to a file descriptor.
 
-stat – Get file metadata (size, permissions, timestamps).
+	stat – Get file metadata (size, permissions, timestamps).
 
-lstat – Like stat, but does not follow symbolic links.
+	lstat – Like stat, but does not follow symbolic links.
 
-fstat – Get file metadata using a file descriptor.
+	fstat – Get file metadata using a file descriptor.
 
-getcwd – Get the current working directory path.
+	getcwd – Get the current working directory path.
 
-### Directory Stream Functions
-opendir – Open a directory stream.
+	### Directory Stream Functions
+	opendir – Open a directory stream.
 
-readdir – Read the next directory entry.
+	readdir – Read the next directory entry.
 
-closedir – Close a directory stream.
+	closedir – Close a directory stream.
 
-### Process Control
-fork – Create a new process by duplicating the current one.
+	### Process Control
+	fork – Create a new process by duplicating the current one.
 
-execve – Replace the current process image with a new program.
+	execve – Replace the current process image with a new program.
 
-exit – Terminate the process after flushing stdio buffers.
+	exit – Terminate the process after flushing stdio buffers.
 
-_exit – Terminate the process immediately (no stdio cleanup).
+	_exit – Terminate the process immediately (no stdio cleanup).
 
-getpid – Return the calling process’s PID.
+	getpid – Return the calling process’s PID.
 
-### Process Synchronization / Waiting
-wait – Wait for any child process to terminate.
+	### Process Synchronization / Waiting
+	wait – Wait for any child process to terminate.
 
-waitpid – Wait for a specific child process.
+	waitpid – Wait for a specific child process.
 
-wait3 – Wait for a child and get resource usage.
+	wait3 – Wait for a child and get resource usage.
 
-wait4 – Like wait3, but allows selecting a specific child.
+	wait4 – Like wait3, but allows selecting a specific child.
 
-### Signals
-signal – Set a signal handler.
+	### Signals
+	signal – Set a signal handler.
 
-kill – Send a signal to a process or process group.
+	kill – Send a signal to a process or process group.
 
-### Memory Management
-malloc – Allocate memory from the heap.
+	### Memory Management
+	malloc – Allocate memory from the heap.
 
-free – Release previously allocated heap memory.
+	free – Release previously allocated heap memory.
 
-### Standard I/O (stdio)
-printf – Print formatted output to standard output.
+	### Standard I/O (stdio)
+	printf – Print formatted output to standard output.
 
-fprintf – Print formatted output to a specified stream.
+	fprintf – Print formatted output to a specified stream.
 
-vfprintf – Like fprintf, but uses a va_list.
+	vfprintf – Like fprintf, but uses a va_list.
 
-sprintf – Write formatted output to a string buffer.
+	sprintf – Write formatted output to a string buffer.
 
-putchar – Write a single character to standard output.
+	putchar – Write a single character to standard output.
 
-fflush – Flush a stream’s output buffer.
+	fflush – Flush a stream’s output buffer.
 
-perror – Print a descriptive error message for errno.
+	perror – Print a descriptive error message for errno.
 
-getline – Read an entire line from a stream.
+	getline – Read an entire line from a stream.
 
-### Terminal & Strings
-isatty – Check if a file descriptor refers to a terminal.
+	### Terminal & Strings
+	isatty – Check if a file descriptor refers to a terminal.
 
-strtok – Tokenize a string using delimiters.
+	strtok – Tokenize a string using delimiters.
 
 ## Compilation
 Use the GCC commande below to compile and run the project:
