@@ -1,7 +1,7 @@
 # SIMPLE SHELL PROJECT
 Creation of our own Simple Shell by Enzo MESSAOUDI, Vincent RENAUD C#28-Sens
 
-## Table of Contents
+## Summary
 - [Description](#description)
 - [Allowed](#allowed)
   - [String Manipulation and Memory Handling Functions](#string-manipulation-and-memory-handling-functions)
@@ -21,14 +21,14 @@ Creation of our own Simple Shell by Enzo MESSAOUDI, Vincent RENAUD C#28-Sens
 - [Flowchart](#flowchart)
 - [Usefull informations](#usefull-informations)
 
-## Description
+## Description [Summary](#Summary)
 Write a simple UNIX command interpreter.
 
 The Shell behaves like the standard one in the terminal.
 
 It supports several functions and system calls.
 
-## Allowed
+## Allowed [Summary](#Summary)
 ### String Manipulation and Memory Handling Functions
 - all functions from string.h
 
@@ -84,7 +84,7 @@ It supports several functions and system calls.
 - isatty – Check if a file descriptor refers to a terminal.
 - strtok – Tokenize a string using delimiters.
 
-## Compilation
+## Compilation [Summary](#Summary)
 Use the GCC commande below to compile and run the project:
 - gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh
 
@@ -116,5 +116,5 @@ To validate the fonctionnality of our shell, we used:
 ## Flowchart
 ![Link](flowchart.png)
 
-## Usefull informations
+## Usefull informations [Summary](#Summary)
 shell.h containts all the prototypes.
