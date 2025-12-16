@@ -1,6 +1,25 @@
-Vivi et Zozo =)
 # SIMPLE SHELL PROJECT
 Creation of our own Simple Shell by Enzo MESSAOUDI, Vincent RENAUD C#28-Sens
+
+## Table of Contents
+- [Description](#description)
+- [Allowed](#allowed)
+  - [String Manipulation and Memory Handling Functions](#string-manipulation-and-memory-handling-functions)
+  - [File & Directory Operations](#file--directory-operations)
+  - [Directory Stream Functions](#directory-stream-functions)
+  - [Process Control](#process-control)
+  - [Process Synchronization / Waiting](#process-synchronization--waiting)
+  - [Signals](#signals)
+  - [Memory Management](#memory-management)
+  - [Standard I/O (stdio)](#standard-io-stdio)
+  - [Terminal & Strings](#terminal--strings)
+- [Compilation](#compilation)
+- [Requirements](#requirements)
+- [Usage exemples](#usage-exemples)
+- [Man page](#man-page)
+- [Testing](#testing)
+- [Flowchart](#flowchart)
+- [Usefull informations](#usefull-informations)
 
 ## Description
 Write a simple UNIX command interpreter.
