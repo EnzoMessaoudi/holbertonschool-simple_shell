@@ -211,28 +211,14 @@ man ./man_1_simple_shell
 
 ## Testing
 To validate the fonctionnality of our shell, we used:
-
 - Betty for style
 - Valgrind to check memory leaks
 - GCC for error:
-	- Wall (enable most warning messages)
-	- Werror (treat all warnings as errors)
-	- Wextra (enables additional warnings that -Wall does not cover)
-	- pedantic (enforces strict ISO C compliance)
-	- std=gnu89 (specifies the C standard to use)
-- /bin/hs  ./hsh (should be the same error)
-
-## Flowchart
-![Link](flowchart.png)
-
-## Usefull informations
-shell.h containts all the prototypes.
-
-	 - Wall (enable most warning messages)
-	 - Werror (treat all warnings as errors)
-	 - Wextra (enables additional warnings that -Wall does not cover)
-	 - pedantic (enforces strict ISO C compliance)
-	 - std=gnu89 (specifies the C standard to use)
+  - Wall (enable most warning messages)
+  - Werror (treat all warnings as errors)
+  - Wextra (enables additional warnings that -Wall does not cover)
+  - pedantic (enforces strict ISO C compliance)
+  - std=gnu89 (specifies the C standard to use)
 - /bin/hs  ./hsh (should be the same error)
 
 ## Flowchart
