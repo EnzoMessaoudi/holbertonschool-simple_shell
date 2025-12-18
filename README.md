@@ -3,7 +3,7 @@ Creation of our own Simple Shell by Enzo MESSAOUDI, Vincent RENAUD C#28-Sens
 
 ## Summary
 - [Description](#description)
-- [Allowed](#allowed)
+- [Allowed functions and system calls](#Allowed-functions-and-system-calls)
   - [String Manipulation and Memory Handling Functions](#string-manipulation-and-memory-handling-functions)
   - [File & Directory Operations](#file--directory-operations)
   - [Directory Stream Functions](#directory-stream-functions)
@@ -28,7 +28,7 @@ The Shell behaves like the standard one in the terminal.
 
 It supports several functions and system calls.
 
-## Allowed [#Summary](#Summary)
+## Allowed functions and system calls
 ### String Manipulation and Memory Handling Functions
 - all functions from string.h
 
@@ -84,7 +84,9 @@ It supports several functions and system calls.
 - isatty – Check if a file descriptor refers to a terminal.
 - strtok – Tokenize a string using delimiters.
 
-## Compilation [#Summary](#Summary)
+[#Summary](Go back to Summary)
+
+## Compilation 
 Use the GCC commande below to compile and run the project:
 - gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh
 
@@ -114,7 +116,9 @@ To validate the fonctionnality of our shell, we used:
 - /bin/hs  ./hsh (should be the same error)
 
 ## Flowchart
-![Link](flowchart.png)
+![Link](Flowshart.png)
 
-## Usefull informations [#Summary](#Summary)
+## Usefull informations 
 shell.h containts all the prototypes.
+
+[#Summary](Go back to Summary)
