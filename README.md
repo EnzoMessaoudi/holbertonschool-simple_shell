@@ -84,9 +84,9 @@ It supports several functions and system calls.
 - isatty – Check if a file descriptor refers to a terminal.
 - strtok – Tokenize a string using delimiters.
 
-[##Summary](Go back to Summary)
+[Go back to Summary](#summary)
 
-## Compilation 
+## Compilation
 Use the GCC commande below to compile and run the project:
 - gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh
 
@@ -118,7 +118,8 @@ To validate the fonctionnality of our shell, we used:
 ## Flowchart
 ![Link](Flowshart.png)
 
-## Usefull informations 
+## Usefull informations
 shell.h containts all the prototypes.
 
-[##Summary](Go back to Summary)
+[Go back to Summary](#summary)
+
