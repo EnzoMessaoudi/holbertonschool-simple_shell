@@ -6,7 +6,7 @@
  * Return: 0 on successful execution
  */
 
-int main(void)
+int read_line(void)
 {
 	char *comm = NULL;
 	size_t size = 0;

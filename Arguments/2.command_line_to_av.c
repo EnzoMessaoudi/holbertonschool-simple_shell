@@ -6,7 +6,7 @@
  * Return: 0 on successful execution
  */
 
-int main(void)
+int _strtok(void)
 {
 	char str[] = "Coucou ! Comment ça va ?";
 	char *token = strtok(str, " ");

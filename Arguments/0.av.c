@@ -8,7 +8,7 @@
  * Return: 0 on successful execution
  */
 
-int main(int argc, char *argv[])
+int _av(int argc, char *argv[])
 {
 	int i;
 
