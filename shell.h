@@ -18,17 +18,22 @@ typedef struct path_node
 } path_node;
 
 
-int main(int argc, char *argv[]);
-int main(void);
-void main(void);
-int main(int argc, char **argv, char **env);
+int _av(int argc, char *argv[]);
+int read_line(void);
+int _strtok(void);
+void _printenv(void);
+int env_v_prenv(int argc, char **argv, char **env);
 char *_getenv(const char *name);
 void print_path_dirs(void);
-int file_exists(const char *path);
-int main(int ac, char **av);
 path_node *build_path_list(void);
 void print_path_list(path_node *head);
 void free_path_list(path_node *head);
 int _setenv(const char *name, const char *value, int overwrite);
+int _unsetenv(const char *name);
+int fork_wait_execve(void);
+int _simple_shell(void);
+int file_exists(const char *path);
+int _getpid(void);
+
 
 # endif
