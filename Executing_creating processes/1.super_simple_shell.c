@@ -1,4 +1,4 @@
-#include "shell.h"
+#include "../shell.h"
 
 /**
  * main - A very simple shell that supports 'ls' and 'exit' commands
@@ -12,7 +12,6 @@ int _simple_shell(void)
 	size_t size = 0, len;
 	pid_t pid;
 	char *args[] = {"/bin/ls", "-l", "/tmp", NULL};
-	int i;
 
 	while (1)
 	{
