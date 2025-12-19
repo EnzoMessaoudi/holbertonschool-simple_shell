@@ -18,6 +18,8 @@ typedef struct path_node
 } path_node;
 
 int simple_shell(void);
+char *verify_path(char **str);
+char *verify_env(char **str);
 int _av(int argc, char *argv[]);
 int read_line(void);
 int _strtok(void);
