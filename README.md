@@ -88,7 +88,7 @@ It supports several functions and system calls.
 
 ## Compilation
 Use the GCC commande below to compile and run the project:
-- gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh
+- gcc -Wall -Werror -Wextra -pedantic -std=gnu89 -g *.c -o hsh
 
 ## Requirements
 - Edit the code on vi, vim or emacs.
@@ -106,7 +106,7 @@ man ./man_1_simple_shell
 ## Testing
 To validate the fonctionnality of our shell, we used:
 - Betty for style
-- Valgrind to check memory leaks
+- Valgrind to check memory leaks (valgrind --leak-check=full ./hsh)
 - GCC for error:
   - Wall (enable most warning messages)
   - Werror (treat all warnings as errors)
