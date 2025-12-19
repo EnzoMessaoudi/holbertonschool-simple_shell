@@ -6,7 +6,7 @@
  * Return: 0 on success
  */
 
-int main(void)
+int fork_wait_execve(void)
 {
 	pid_t pid;
 	char *args[] = {"/bin/ls", "-l", "/tmp", NULL};

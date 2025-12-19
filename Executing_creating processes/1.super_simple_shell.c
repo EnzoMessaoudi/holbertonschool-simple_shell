@@ -6,7 +6,7 @@
  * Return: 0 on success
  */
 
-int main(void)
+int _simple_shell(void)
 {
 	char *comm = NULL;
 	size_t size = 0, len;
