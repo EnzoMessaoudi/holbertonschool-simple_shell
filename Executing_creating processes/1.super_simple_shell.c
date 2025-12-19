@@ -1,7 +1,7 @@
 #include "../shell.h"
 
 /**
- * main - A very simple shell that supports 'ls' and 'exit' commands
+ * _simple_shell - A very simple shell that supports 'ls' and 'exit' commands
  *
  * Return: 0 on success
  */
@@ -10,8 +10,7 @@ int _simple_shell(void)
 {
 	char *comm = NULL;
 	size_t size = 0, len;
-	pid_t pid;
-	char *args[] = {"/bin/ls", "-l", "/tmp", NULL};
+	int i = 0;
 
 	while (1)
 	{
@@ -26,24 +25,17 @@ int _simple_shell(void)
 			comm[len] = '\0';
 		if (strcmp(comm, "exit") == 0)
 			break;
-		if (strcmp(comm, "ls") == 0)
+		if (strcmp(comm, "") == 0)
 		{
-			pid = fork();
-			if (pid < 0)
-			{
-				perror("fork");
-				break;
-			}
-			if (pid == 0)
-			{
-				execve("/bin/ls", args, environ);
-				perror("execve");
-				exit(EXIT_FAILURE);
-			}
-			wait(NULL);
+			i++;
+			continue;
 		}
-		else
-			printf("shell: 1: %s : not found\n", comm);
+		/**1- Strtok sur comm(saisie de ce que l'utilisateur a mis)*/
+		/**2- Appeler une fonction (strtok de comm et combien d'arguments) qui check si la commande saise est une fonction du path puis vérifier si les données retournées sont positives */
+		/**3- Appeler une fonction (strtok de comm et combien d'arguments) qui check si la commande saisie touche à l'environnement */
+			printf("shell: %d: %s : not found\n", i, comm);
+			i++;
+
 	}
 	free(comm);
 	return (0);
