@@ -1,4 +1,4 @@
-#include "shell.h"
+#include "../shell.h"
 
 /**
  * main - Forks 5 child processes to run /bin/ls -l /tmp
