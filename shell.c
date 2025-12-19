@@ -1,16 +1,17 @@
 #include "shell.h"
 
 /**
- * _simple_shell - A very simple shell that supports 'ls' and 'exit' commands
+ * simple_shell - Shell-like function that can do simple tasks asked.
  *
  * Return: 0 on success
  */
 
 int simple_shell(void)
 {
-	char *comm = NULL;
+	char *comm = NULL, *args[10], *token;
 	size_t size = 0, len;
-	int i = 0;
+	int i = 0, c = 0;
+	char *res;/** Ceci est un exemple de variable !!!!A changer!!!! */
 
 	while (1)
 	{
@@ -30,10 +31,27 @@ int simple_shell(void)
 			i++;
 			continue;
 		}
-		/**1- Strtok sur comm(saisie de ce que l'utilisateur a mis)*/
-		/**2- Appeler une fonction (strtok de comm et combien d'arguments) qui check si la commande saise est une fonction du path puis vérifier si les données retournées sont positives */
-		/**3- Appeler une fonction (strtok de comm et combien d'arguments) qui check si la commande saisie touche à l'environnement */
-			printf("shell: %d: %s : not found\n", i, comm);
+		token = strtok(comm, " ");
+		while (token != NULL)
+		{
+			args[c++] = token; /** Tableau qui prends un executable en première case et ses paramètre à la suite */
+			token = strtok(NULL, " ");
+		}
+		res = verify_path(args); /** Fonction qui va vérifier si args est une commande dans le path et l'éxécuter si oui*/
+		if (strcmp(res, "SUCCESS") == 0) /** Si la commande a été trouvé et éxécuter alors on recommence depuis la boucle */
+		{
+			i++;
+			printf("Passe ici !");
+			continue;
+		}
+		res = verify_env(args); /** Fonction qui vérifie les commandes en rapport avec l'environnement et éxécute si trouvé */
+		if (strcmp(res, "SUCCESS") == 0) /** Si la commande a été trouvé et éxécuter alors on recommence depuis la boucle */
+		{
+			i++;
+			printf("Passe ici !2");
+			continue;
+		}
+			printf("shell: %d: %s : not found\n", i, comm); /** Si ça arrive à ici, alors cela veut dire que l'user à rentrer une mauvaise commande */
 			i++;
 
 	}
