@@ -41,14 +41,12 @@ int simple_shell(void)
 		if (strcmp(res, "SUCCESS") == 0) /** Si la commande a été trouvé et éxécuter alors on recommence depuis la boucle */
 		{
 			i++;
-			printf("Passe ici !");
 			continue;
 		}
 		res = verify_env(args); /** Fonction qui vérifie les commandes en rapport avec l'environnement et éxécute si trouvé */
 		if (strcmp(res, "SUCCESS") == 0) /** Si la commande a été trouvé et éxécuter alors on recommence depuis la boucle */
 		{
 			i++;
-			printf("Passe ici !2");
 			continue;
 		}
 			printf("shell: %d: %s : not found\n", i, comm); /** Si ça arrive à ici, alors cela veut dire que l'user à rentrer une mauvaise commande */
