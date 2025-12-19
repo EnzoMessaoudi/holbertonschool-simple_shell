@@ -6,7 +6,7 @@
  * Return: 0 on success
  */
 
-void main(void)
+void _printenv(void)
 {
 	int i = 0;
 
