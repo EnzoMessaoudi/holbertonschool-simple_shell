@@ -9,7 +9,7 @@
  * Return: 0 on success
  */
 
-int main(int argc, char **argv, char **env)
+int env_v_prenv(int argc, char **argv, char **env)
 {
 	printf("Address of env parameter: %p\n", (void *)env);
 	printf("Address of environ variable: %p\n", (void *)environ);
