@@ -17,7 +17,7 @@ typedef struct path_node
 	struct path_node *next;
 } path_node;
 
-
+int simple_shell(void);
 int _av(int argc, char *argv[]);
 int read_line(void);
 int _strtok(void);
@@ -31,7 +31,7 @@ void free_path_list(path_node *head);
 int _setenv(const char *name, const char *value, int overwrite);
 int _unsetenv(const char *name);
 int fork_wait_execve(void);
-int _simple_shell(void);
+int super_simple_shell(void);
 int file_exists(const char *path);
 int _getpid(void);
 
