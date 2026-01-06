@@ -3,8 +3,7 @@
 
 /**
  * find_path - Searches for given filenames in directories listed in PATH
- * @ac: Argument count
- * @av: Argument value
+ * @comm: Command passed by the user
  * Return: SUCCES on success, FALSE if usage error or PATH not set
  */
 
@@ -81,6 +80,8 @@ char *verify_path(int count, char **str)
 		perror("execve");
 		_exit(1);
 	}
+	else
+		wait(NULL);
 	free(path);
 	free(argv);
 	return ("SUCCESS");
