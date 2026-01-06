@@ -8,46 +8,33 @@
  * Return: SUCCES on success, FALSE if usage error or PATH not set
  */
 
-char *find_path(int ac, char **av)
+char *find_path(char *comm)
 {
-	char *path_env, *path_copy, *dir, *full_path;
-	int i = 0;
-
-	if (ac == 0 || av == 0)
-		return (NULL);
+	char *path_env, *path_copy, *dir, full_path[PATH_MAX];
+	char *result;
 
 	path_env = getenv("PATH");
 	if (path_env == NULL)
 		return (NULL);
 
-	while (i < ac)
+	path_copy = strdup(path_env);
+	if (path_copy == NULL)
+		return (NULL);
+
+	dir = strtok(path_copy, ":");
+	while (dir != NULL)
 	{
-		path_copy = strdup(path_env);
-		if (path_copy == NULL)
-			return (NULL);
+		sprintf(full_path, "%s/%s", dir, comm);
 
-		dir = strtok(path_copy, ":");
-		while (dir != NULL)
+		if (access(full_path, X_OK) == 0)
 		{
-			full_path = malloc(PATH_MAX);
-			if (full_path == NULL)
-			{
-				free(path_copy);
-				return (NULL);
-			}
-			sprintf(full_path, "%s/%s", dir, av[i]);
-
-			if (access(path, X_OK) == 0)
-			{
-				free(path_copy);
-				return (full_path);
-			}
-			free(full_path);
-			dir = strtok(NULL, ":");
+			result = strdup(full_path);
+			free(path_copy);
+			return (result);
 		}
-		free(path_copy);
-		i++;
+		dir = strtok(NULL, ":");
 	}
+	free(path_copy);
 	return (NULL);
 }
 
@@ -65,7 +52,7 @@ char *verify_path(int count, char **str)
 	char **argv;
 	pid_t pid;
 
-	path = find_path(count, str);
+	path = find_path(str[0]);
 	if (path == NULL)
 		return ("FALSE");
 
@@ -78,12 +65,14 @@ char *verify_path(int count, char **str)
 	argv[0] = str[0];
 	for (i = 1; i < count; i++)
 		argv[i] = str[i];
-
 	argv[count] = NULL;
+
 	pid = fork();
 	if (pid == -1)
 	{
 		perror("FORK");
+		free(path);
+		free(argv);
 		return ("FALSE");
 	}
 	else if (pid == 0)
@@ -93,6 +82,6 @@ char *verify_path(int count, char **str)
 		_exit(1);
 	}
 	free(path);
-
+	free(argv);
 	return ("SUCCESS");
 }

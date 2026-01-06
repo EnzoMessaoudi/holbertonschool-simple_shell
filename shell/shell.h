@@ -36,7 +36,7 @@ int fork_wait_execve(void);
 int super_simple_shell(void);
 int file_exists(const char *path);
 int _getpid(void);
-char *find_path(int ac, char **av);
+char *find_path(char *av);
 
 
 # endif
