@@ -76,7 +76,7 @@ char *verify_path(int count, char **str)
 	}
 	else if (pid == 0)
 	{
-		execve(path, argv, NULL);
+		execve(path, argv, environ);
 		perror("execve");
 		_exit(1);
 	}

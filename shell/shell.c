@@ -8,20 +8,17 @@
 
 int simple_shell(void)
 {
-	char *comm = NULL, *args[10], *token; /** comm = command, args = arguments */
+	char *comm = NULL, *args[10], *token, *result;
 	size_t size = 0, len;
 	int i = 0, count = 0;
-	char *result;
 
 	while (1)
 	{
 		printf("$ ");
 		fflush(stdout);
-
 		if (getline(&comm, &size, stdin) == -1)
 			break;
 		len = strcspn(comm, "\n");
-
 		if (comm[len] == '\n')
 			comm[len] = '\0';
 		if (strcmp(comm, "exit") == 0)
@@ -32,26 +29,26 @@ int simple_shell(void)
 			continue;
 		}
 		token = strtok(comm, " ");
+		count = 0;
 		while (token != NULL)
 		{
-			args[count++] = token; /** Tableau qui prends un executable en première case et ses paramètre à la suite */
+			args[count++] = token;
 			token = strtok(NULL, " ");
 		}
-		result = verify_path(count, args); /** Fonction qui va vérifier si args est une commande dans le path et l'éxécuter si oui*/
-		if (strcmp(result, "SUCCESS") == 0) /** Si la commande a été trouvé et éxécuter alors on recommence depuis la boucle */
+		result = verify_env(count, args);
+		if (strcmp(result, "SUCCESS") == 0)
 		{
 			i++;
 			continue;
 		}
-		result = verify_env(count, args); /** Fonction qui vérifie les commandes en rapport avec l'environnement et éxécute si trouvé */
-		if (strcmp(result, "SUCCESS") == 0) /** Si la commande a été trouvé et éxécuter alors on recommence depuis la boucle */
+		result = verify_path(count, args);
+		if (strcmp(result, "SUCCESS") == 0)
 		{
 			i++;
 			continue;
 		}
-			printf("shell: %d: %s : not found\n", i, comm); /** Si ça arrive à ici, alors cela veut dire que l'user à rentrer une mauvaise commande */
+			printf("%s: %d: %s : not found\n", args[0], i, comm);
 			i++;
-
 	}
 	free(comm);
 	return (0);
