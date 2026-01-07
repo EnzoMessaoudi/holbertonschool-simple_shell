@@ -87,10 +87,11 @@ char *verify_path(int count, char **str)
 		path = strdup(str[0]);
 	}
 	else
-		return ("FALSE");
-	/**
-	* Code numéro 2
-	*/
+	{
+		path = find_path(str[0]);
+		if (!path)
+			return ("FALSE");
+	}
 	argv = malloc(sizeof(char *) * (count + 1));
 	if (!argv)
 	{
