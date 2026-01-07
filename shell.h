@@ -12,8 +12,8 @@
 extern char **environ;
 
 int simple_shell(char *shell_name);
-char *verify_path(int count, char **str);
-char *verify_env(int count, char **str);
+int verify_path(int count, char **str);
+int verify_env(int count, char **str);
 int _av(int argc, char *argv[]);
 int read_line(void);
 int _strtok(void);
