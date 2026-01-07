@@ -24,6 +24,23 @@ int command(char *comm, char **args)
 }
 
 /**
+* handle_success - Function that increment i if the command is found
+* @result: Variable that check if the command was executed
+* @line: On Success, i will be increment by one
+* Return: Return 1 on success and 0 if not
+*/
+
+int handle_success(char *result, int *line)
+{
+	if (strcmp(result, "SUCCESS") == 0)
+	{
+		(*line)++;
+		return (1);
+	}
+	return (0);
+}
+
+/**
  * simple_shell - Shell-like function that can do simple tasks asked.
  * @shell_name: Name used to call the shell function
  * Return: 0 on success
@@ -43,12 +60,13 @@ int simple_shell(char *shell_name)
 			fflush(stdout);
 		}
 		if (getline(&comm, &size, stdin) == -1)
+		{
+			printf("\n");
 			break;
+		}
 		len = strcspn(comm, "\n");
 		if (comm[len] == '\n')
 			comm[len] = '\0';
-		if (strcmp(comm, "exit") == 0)
-			break;
 		if (strcmp(comm, "") == 0)
 		{
 			i++;
@@ -56,17 +74,12 @@ int simple_shell(char *shell_name)
 		}
 		count = command(comm, args);
 		result = verify_env(count, args);
-		if (strcmp(result, "SUCCESS") == 0)
-		{
-			i++;
-			continue;
-		}
-		result = verify_path(count, args);
-		if (strcmp(result, "SUCCESS") == 0)
-		{
-			i++;
-			continue;
-		}
+	result = verify_env(count, args);
+	if (handle_success(result, &i) == 1)
+		continue;
+	result = verify_path(count, args);
+	if (handle_success(result, &i) == 1)
+		continue;
 			printf("%s: %d: %s : not found\n", shell_name, i++, args[0]);
 	}
 	free(comm);
