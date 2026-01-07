@@ -30,7 +30,7 @@ int command(char *comm, char **args)
 * Return: Return 1 on success and 0 if not
 */
 
-int handle_success(char *result, int *line)
+int handle_success(int result, int *line)
 {
 	if (result == 0)
 	{
@@ -48,9 +48,9 @@ int handle_success(char *result, int *line)
 
 int simple_shell(char *shell_name)
 {
-	char *comm = NULL, *args[30], *result;
+	char *comm = NULL, *args[30];
 	size_t size = 0, len;
-	int i = 1, count = 0;
+	int i = 1, count = 0, result;
 
 	while (1)
 	{
