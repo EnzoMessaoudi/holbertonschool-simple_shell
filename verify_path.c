@@ -98,7 +98,7 @@ int verify_path(int count, char **str)
 		free(path);
 		return (-1);
 	}
-	argv[0] = path;
+	argv[0] = str[0];
 	for (i = 1; i < count; i++)
 		argv[i] = str[i];
 	argv[count] = NULL;
