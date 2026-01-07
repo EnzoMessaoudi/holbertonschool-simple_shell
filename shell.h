@@ -11,12 +11,6 @@
 
 extern char **environ;
 
-typedef struct path_node
-{
-	char *dir;
-	struct path_node *next;
-} path_node;
-
 int simple_shell(char *shell_name);
 char *verify_path(int count, char **str);
 char *verify_env(int count, char **str);
