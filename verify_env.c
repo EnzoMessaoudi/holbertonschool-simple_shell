@@ -38,7 +38,6 @@ int _setenv(const char *name, const char *value, int overwrite)
 	if (str == NULL)
 		return (-1);
 	sprintf(str, "%s=%s", name, value);
-
 	while (environ[i] != NULL)
 	{
 		if (strncmp(environ[i], name, strlen(name)) == 0 &&
@@ -55,7 +54,6 @@ int _setenv(const char *name, const char *value, int overwrite)
 		}
 		i++;
 	}
-
 	new_env = malloc(sizeof(char *) * (i + 2));
 	if (new_env == NULL)
 	{
@@ -66,6 +64,8 @@ int _setenv(const char *name, const char *value, int overwrite)
 		new_env[j] = environ[j];
 	new_env[i] = str;
 	new_env[i + 1] = NULL;
+	if (environ != NULL)
+		free(environ);
 	environ = new_env;
 	return (0);
 }
