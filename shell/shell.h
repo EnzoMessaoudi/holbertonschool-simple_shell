@@ -17,7 +17,7 @@ typedef struct path_node
 	struct path_node *next;
 } path_node;
 
-int simple_shell(void);
+int simple_shell(char *shell_name);
 char *verify_path(int count, char **str);
 char *verify_env(int count, char **str);
 int _av(int argc, char *argv[]);

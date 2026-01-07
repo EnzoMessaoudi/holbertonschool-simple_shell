@@ -37,6 +37,36 @@ char *find_path(char *comm)
 	return (NULL);
 }
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+
+/**
+ * fork_and_exec - Forks a child process and executes a command
+ * @path: Full path to executable
+ * @argv: Argument array (NULL-terminated)
+ *
+ * Return: pid of child on success, -1 on fork failure
+ */
+pid_t fork_and_exec(char *path, char **argv)
+{
+	pid_t pid = fork();
+
+	if (pid == -1)
+	{
+		perror("fork");
+		return (-1);
+	}
+
+	if (pid == 0)
+	{
+		execve(path, argv, environ);
+		perror("execve");
+		_exit(1);
+	}
+
+	return (pid);
+}
 /**
 * verify_path - Check if the command is in the path and executable
 * @count: Number of arguements passed
@@ -46,42 +76,42 @@ char *find_path(char *comm)
 
 char *verify_path(int count, char **str)
 {
+	char *path, **argv;
 	int i;
-	char *path;
-	char **argv;
 	pid_t pid;
 
-	path = find_path(str[0]);
-	if (path == NULL)
-		return ("FALSE");
-
+	if (strchr(str[0], '/'))
+	{
+		if (access(str[0], X_OK) != 0)
+			return ("FALSE");
+		path = strdup(str[0]);
+	}
+	else
+	{
+		path = find_path(str[0]);
+		if (!path)
+			return ("FALSE");
+	}
 	argv = malloc(sizeof(char *) * (count + 1));
 	if (!argv)
 	{
 		free(path);
 		return ("FALSE");
 	}
-	argv[0] = str[0];
+	argv[0] = path;
 	for (i = 1; i < count; i++)
 		argv[i] = str[i];
 	argv[count] = NULL;
 
-	pid = fork();
+	pid = fork_and_exec(path, argv);
 	if (pid == -1)
 	{
-		perror("FORK");
 		free(path);
 		free(argv);
 		return ("FALSE");
 	}
-	else if (pid == 0)
-	{
-		execve(path, argv, environ);
-		perror("execve");
-		_exit(1);
-	}
-	else
-		wait(NULL);
+
+	waitpid(pid, NULL, 0);
 	free(path);
 	free(argv);
 	return ("SUCCESS");
