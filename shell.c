@@ -56,7 +56,7 @@ int simple_shell(char *shell_name)
 	{
 		if (isatty(STDIN_FILENO))
 		{
-			printf("($) ");
+			printf("$ ");
 			fflush(stdout);
 		}
 		if (getline(&comm, &size, stdin) == -1)
