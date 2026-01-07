@@ -71,48 +71,48 @@ pid_t fork_and_exec(char *path, char **argv)
 * verify_path - Check if the command is in the path and executable
 * @count: Number of arguements passed
 * @str: Command gived by the user
-* Return: Return SUCCESS if the command is good or FALSE if not
+* Return: Return 0 on Success or -1 if fail
  */
 
-char *verify_path(int count, char **str)
+int verify_path(int count, char **str)
 {
 	char *path, **argv;
-	int i;
-	pid_t pid;
+	int i, status;
+	pid_t pid, ret;
 
 	if (strchr(str[0], '/'))
 	{
 		if (access(str[0], X_OK) != 0)
-			return ("FALSE");
+			return (-1);
 		path = strdup(str[0]);
 	}
 	else
 	{
 		path = find_path(str[0]);
-		if (!path)
-			return ("FALSE");
+		if (path == NULL)
+			return (-1);
 	}
 	argv = malloc(sizeof(char *) * (count + 1));
-	if (!argv)
+	if (argv == NULL)
 	{
 		free(path);
-		return ("FALSE");
+		return (-1);
 	}
-	argv[0] = path;
+	argv[0] = str[0];
 	for (i = 1; i < count; i++)
 		argv[i] = str[i];
 	argv[count] = NULL;
-
 	pid = fork_and_exec(path, argv);
 	if (pid == -1)
 	{
 		free(path);
 		free(argv);
-		return ("FALSE");
+		return (-1);
 	}
-
-	waitpid(pid, NULL, 0);
+	ret = waitpid(pid, &status, 0);
 	free(path);
 	free(argv);
-	return ("SUCCESS");
+	if (ret == -1)
+		return (-1);
+	return (0);
 }
