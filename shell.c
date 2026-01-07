@@ -61,7 +61,8 @@ int simple_shell(char *shell_name)
 		}
 		if (getline(&comm, &size, stdin) == -1)
 		{
-			printf("\n");
+			if (isatty(STDIN_FILENO))
+				printf("\n");
 			break;
 		}
 		len = strcspn(comm, "\n");
@@ -73,14 +74,13 @@ int simple_shell(char *shell_name)
 			continue;
 		}
 		count = command(comm, args);
-		result = verify_env(count, args);
-	result = verify_env(count, args);
-	if (handle_success(result, &i) == 1)
-		continue;
-	result = verify_path(count, args);
-	if (handle_success(result, &i) == 1)
-		continue;
-			printf("%s: %d: %s : not found\n", shell_name, i++, args[0]);
+		/**
+		* Code numéro 1
+		*/
+		result = verify_path(count, args);
+		if (handle_success(result, &i) == 1)
+			continue;
+				printf("%s: %d: %s : not found\n", shell_name, i++, args[0]);
 	}
 	free(comm);
 	return (0);
