@@ -31,7 +31,7 @@ int command(char *comm, char **args)
 
 int simple_shell(char *shell_name)
 {
-	char *comm = NULL, *args[10], *result;
+	char *comm = NULL, *args[30], *result;
 	size_t size = 0, len;
 	int i = 1, count = 0;
 
@@ -67,7 +67,7 @@ int simple_shell(char *shell_name)
 			i++;
 			continue;
 		}
-			printf("%s: %d: %s : not found\n", shell_name, i++, comm);
+			printf("%s: %d: %s : not found\n", shell_name, i++, args[0]);
 	}
 	free(comm);
 	return (0);
