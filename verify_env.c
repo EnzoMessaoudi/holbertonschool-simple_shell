@@ -105,10 +105,10 @@ int _unsetenv(const char *name)
 * verify_env - Function that execute environnement function if founds
 * @count: Number of arguements passed
 * @str: Executable and its paramters passed by the user
-* Return: Return SUCCESS if the function find a executable or FALSE if not
+* Return: Return 0 on success or -1 if failed
 */
 
-char *verify_env(int count, char **str)
+int verify_env(int count, char **str)
 {
 	int i;
 
@@ -117,23 +117,23 @@ char *verify_env(int count, char **str)
 		if (count < 4)
 		{
 			printf("Not enought arguments passed\n");
-			return ("SUCCESS");
+			return (0);
 		}
 		i = atoi(str[3]);
 		_setenv(str[1], str[2], i);
-		return ("SUCCESS");
+		return (0);
 	}
 	else if (strcmp(str[0], "unsetenv") == 0)
 	{
 		_unsetenv(str[1]);
-		return ("SUCCESS");
+		return (0);
 	}
 	else if (strcmp(str[0], "env") == 0
 	|| strcmp(str[0], "printenv") == 0)
 	{
 		_printenv();
-		return ("SUCCESS");
+		return (0);
 	}
 
-	return ("FALSE");
+	return (-1);
 }
