@@ -1,0 +1,117 @@
+.TH HSH 1 "December 2025" "Simple Shell Manual"
+
+.SH NAME
+hsh \- simple UNIX command interpreter
+
+.SH SYNOPSIS
+.B ./hsh
+.RI [options]
+
+.nf
+#include "shell.h"
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/wait.h>
+#include <sys/stat.h>
+.fi
+
+.B int simple_shell(void);
+
+.SH DESCRIPTION
+\fBhsh\fR  is a custom UNIX shell command interpreter written by Enzo MESSAOUDI and Vincent RENAUD (C#28-Sens).
+
+It behaves like a standard shell and supports various system calls, functions and command execution.
+
+It reads commands from standard input, parses them into arguments, and executes them using the underlying UNIX system calls.
+
+.PP
+The following conversion specifiers are supported:
+
+.RS
+.IP "String Manipulation and Memory Handling"
+All functions from \fIstring.h\fR
+.IP "File & Directory Operations"
+access, chdir, open, close, read, write, stat, lstat, fstat, getcwd
+.IP "Directory Stream Functions"
+opendir, readdir, closedir
+.IP "Process Control"
+fork, execve, exit, _exit, getpid
+.IP "Process Synchronization / Waiting"
+wait, waitpid, wait3, wait4
+.IP "Signals"
+signal, kill
+.IP "Memory Management"
+malloc, free
+.IP "Standard I/O"
+printf, fprintf, vfprintf, sprintf, putchar, fflush, perror, getline
+.IP "Terminal & Strings"
+isatty, strtok
+.RE
+
+.SH USAGE
+Run the shell executable:
+
+
+ ./hsh
+displays a prompt "$ " and waits for user input. Commands are tokenized by spaces and executed using
+.B execve(2).
+.PP
+The shell loop continues until the user enters the built-in
+.B exit
+command or an end-of-file (Ctrl+D) is encountered.
+
+
+.SH COMMAND PARSING
+The shell splits each input line into an array of arguments (argv) using spaces as delimiters. A maximum of 9 arguments per command is supported; the array is NULL-terminated.
+
+.SH EXECUTION
+Each command is executed in a child process created using
+.B fork(2).
+The child process attempts to execute the command with
+.B execve(2).
+If execution fails, an error message is printed using
+.B perror(3),
+and the child exits with status 127. The parent process waits for the child to finish.
+
+.SH EXAMPLES
+.TP
+Start the shell
+$ hsh
+.TP
+Execute a command
+$ ls -l /tmp
+.TP
+Exit the shell
+$ exit
+
+.SH EXIT STATUS
+The \fB./hsh\fR shell returns an exit status to indicate the result of the last command executed or the shell itself. The possible values are:
+
+.RS
+.TP
+0
+The shell exited successfully or the last command executed successfully.
+.TP
+1
+A generic error occurred within the shell, such as an internal failure or invalid input.
+.TP
+126
+A command was found but could not be executed.
+.TP
+127
+A command was not found.
+
+.SH AUTHORS
+Enzo MESSAOUDI and Vincent RENAUD
+
+.SH SEE ALSO
+.BR execve (2),
+.BR sh (1),
+.BR fork (2),
+.BR wait (2),
+.BR getline (3),
+.BR perror (3),
+.BR valgrind (1)
