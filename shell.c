@@ -75,7 +75,6 @@ int simple_shell(char *shell_name)
 		}
 		count = command(comm, args);
 		result = verify_env(count, args);
-		result = verify_env(count, args);
 		if (handle_success(result, &i) == 1)
 			continue;
 		result = verify_path(count, args);
