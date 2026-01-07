@@ -32,7 +32,7 @@ int command(char *comm, char **args)
 
 int handle_success(char *result, int *line)
 {
-	if (strcmp(result, "SUCCESS") == 0)
+	if (result == 0)
 	{
 		(*line)++;
 		return (1);
