@@ -1,4 +1,4 @@
-#include "shell.h"
+#include "../shell.h"
 
 /**
  * main - Demonstrates how strtok splits a string into tokens
@@ -11,11 +11,20 @@ int _strtok(void)
 	char str[] = "Coucou ! Comment ça va ?";
 	char *token = strtok(str, " ");
 
+	printf("%s", token);
+/**
 	while (token != NULL)
 	{
 		printf("%s\n", token);
 		token = strtok(NULL, " ");
 	}
-
+*/
 	return (0);
+}
+
+int main(void)
+{
+	_strtok();
+
+	return (1);
 }
