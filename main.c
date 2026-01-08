@@ -12,5 +12,5 @@ int main(int argc, char **argv)
 	(void)argc;
 	simple_shell(argv[0]);
 
-	return (1);
+	return (0);
 }
