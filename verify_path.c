@@ -78,7 +78,7 @@ int verify_path(int count, char **str)
 {
 	char *path, **argv;
 	int i, status;
-	pid_t pid, ret;
+	pid_t pid;
 
 	if (strchr(str[0], '/'))
 	{
@@ -98,7 +98,7 @@ int verify_path(int count, char **str)
 		free(path);
 		return (-1);
 	}
-	argv[0] = path;
+	argv[0] = str[0];
 	for (i = 1; i < count; i++)
 		argv[i] = str[i];
 	argv[count] = NULL;
@@ -109,15 +109,13 @@ int verify_path(int count, char **str)
 		free(argv);
 		return (-1);
 	}
-	ret = waitpid(pid, &status, 0);
+	if (waitpid(pid, &status, 0) == -1)
+		return (-1);
 	free(path);
 	free(argv);
-	if (ret == -1)
-		return (-1);
 	if (WIFEXITED(status) == 1)
 		return (WEXITSTATUS(status));
 	if (WIFSIGNALED(status) == 1)
 		return (128 + WTERMSIG(status));
 	return (-1);
 }
-
