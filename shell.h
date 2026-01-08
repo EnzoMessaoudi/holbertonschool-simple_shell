@@ -21,5 +21,4 @@ int _getpid(void);
 char *find_path(char *av);
 pid_t fork_and_exec(char *path, char **argv);
 
-
 # endif
