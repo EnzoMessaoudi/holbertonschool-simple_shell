@@ -1,5 +1,5 @@
 # SIMPLE SHELL PROJECT
-Creation of our own Simple Shell by Enzo MESSAOUDI, Vincent RENAUD C#28-Sens
+Creation of our own Simple Shell by Enzo MESSAOUDI and Vincent RENAUD C#28-Sens
 
 ## Summary
 - [Description](#description)
@@ -95,7 +95,7 @@ Use the GCC commande below to compile and run the project:
 - Use git for version control.
 - Compiled on Ubuntu 20.04 LTS using gcc, using the options -Wall -Werror -Wextra -pedantic -std=gnu89.
 
-## Usage exemples
+## Usage examples
 - /# echo "qwerty" | /bin/sh  --> /bin/sh: 1: qwerty: not found
 - /# echo "qwerty" | ./hsh    --> ./hsh: 1: qwerty: not found
 
