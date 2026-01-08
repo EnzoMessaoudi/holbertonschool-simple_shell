@@ -69,10 +69,7 @@ int simple_shell(char *shell_name)
 		if (comm[len] == '\n')
 			comm[len] = '\0';
 		if (strcmp(comm, "exit") == 0)
-		{
-			free(comm);
-			exit(result);
-		}
+			break;
 		if (strcmp(comm, "") == 0)
 		{
 			i++;
