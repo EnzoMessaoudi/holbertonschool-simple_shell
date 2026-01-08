@@ -98,7 +98,7 @@ int verify_path(int count, char **str)
 		free(path);
 		return (-1);
 	}
-	argv[0] = str[0];
+	argv[0] = path;
 	for (i = 1; i < count; i++)
 		argv[i] = str[i];
 	argv[count] = NULL;
@@ -114,5 +114,10 @@ int verify_path(int count, char **str)
 	free(argv);
 	if (ret == -1)
 		return (-1);
-	return (0);
+	if (WIFEXITED(status) == 1)
+		return (WEXITSTATUS(status));
+	if (WIFSIGNALED(status) == 1)
+		return (128 + WTERMSIG(status));
+	return (-1);
 }
+
