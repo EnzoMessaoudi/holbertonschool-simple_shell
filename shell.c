@@ -68,14 +68,17 @@ int simple_shell(char *shell_name)
 		len = strcspn(comm, "\n");
 		if (comm[len] == '\n')
 			comm[len] = '\0';
-		if (strcmp(comm, "exit") == 0)
-			break;
 		if (strcmp(comm, "") == 0)
 		{
 			i++;
 			continue;
 		}
 		count = command(comm, args);
+		if (strcmp(args[0], "exit") == 0)
+		{
+			free(comm);
+			exit(result);
+		}
 		result = verify_env(count, args);
 		if (handle_success(result, &i) == 0)
 			continue;
