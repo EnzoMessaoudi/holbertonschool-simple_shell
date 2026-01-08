@@ -50,7 +50,7 @@ int simple_shell(char *shell_name)
 {
 	char *comm = NULL, *args[30];
 	size_t size = 0, len;
-	int i = 1, count = 0, result;
+	int i = 1, count = 0, result = 0;
 
 	while (1)
 	{
@@ -68,6 +68,8 @@ int simple_shell(char *shell_name)
 		len = strcspn(comm, "\n");
 		if (comm[len] == '\n')
 			comm[len] = '\0';
+		if (strcmp(comm, "exit") == 0)
+			exit(result);
 		if (strcmp(comm, "") == 0)
 		{
 			i++;
