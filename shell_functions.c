@@ -1,6 +1,45 @@
 #include "shell.h"
 
 /**
+* remove_quotes - Function that remove quotes from the command
+* @str: Command we want to remove quotes from
+*/
+void remove_quotes(char *str)
+{
+	int i = 0, j = 0;
+	char *tmp;
+
+	tmp = malloc(strlen(str) + 1);
+	if (tmp == NULL)
+		return;
+
+	for (; str[i]; i++)
+	{
+		if (str[i] != '"' && str[i] != '\'')
+		{
+			tmp[j] = str[i];
+			j++;
+		}
+	}
+
+	tmp[j] = '\0';
+	strcpy(str, tmp);
+	free(tmp);
+}
+
+/**
+* print_prompt - Function that display the "$" prompt at each loop
+*/
+void print_prompt(void)
+{
+	if (isatty(STDIN_FILENO))
+	{
+		printf("$ ");
+		fflush(stdout);
+	}
+}
+
+/**
  * command - Splits a string into tokens
  *
  * @comm: Input string containing the command
@@ -32,22 +71,10 @@ int command(char *comm, char **args)
 
 int handle_success(int result, int *line)
 {
-	if (result == 0)
+	if (result == 0 || result == 1)
 	{
 		(*line)++;
 		return (0);
 	}
 	return (1);
-}
-
-/**
-* print_prompt - Function that display the "$" prompt at each loop
-*/
-void print_prompt(void)
-{
-	if (isatty(STDIN_FILENO))
-	{
-		printf("$ ");
-		fflush(stdout);
-	}
 }

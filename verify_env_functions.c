@@ -1,23 +1,6 @@
 #include "shell.h"
 
 /**
- * _printenv - Prints all environment variables
- *
- * Return: 0 on success
- */
-
-void _printenv(void)
-{
-	int i = 0;
-
-	while (environ[i] != NULL)
-	{
-		printf("%s\n", environ[i]);
-		i++;
-	}
-}
-
-/**
  * _setenv - Adds or modifies an environment variable
  * @name: Name of the variable
  * @value: Value to set
@@ -99,4 +82,21 @@ int _unsetenv(const char *name)
 		i++;
 	}
 	return (0);
+}
+
+/**
+ * _printenv - Prints all environment variables
+ *
+ * Return: 0 on success
+ */
+
+void _printenv(void)
+{
+	int i = 0;
+
+	while (environ[i] != NULL)
+	{
+		printf("%s\n", environ[i]);
+		i++;
+	}
 }

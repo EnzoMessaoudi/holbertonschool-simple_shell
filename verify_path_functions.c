@@ -1,6 +1,25 @@
 #include "shell.h"
 
 /**
+* resolve_path - Function that transform cmd into a path
+* @cmd: Command gived by the user
+* Return: Return the path of the commmand on success or -1 if failed
+*/
+char *resolve_path(char *cmd)
+{
+	char *path;
+
+	if (strchr(cmd, '/'))
+	{
+		if (access(cmd, X_OK) != 0)
+			return (NULL);
+		return (strdup(cmd));
+	}
+	path = find_path(cmd);
+	return (path);
+}
+
+/**
  * find_path - Searches for given filenames in directories listed in PATH
  * @comm: Command passed by the user
  * Return: SUCCES on success, FALSE if usage error or PATH not set
@@ -57,27 +76,8 @@ pid_t fork_and_exec(char *path, char **argv)
 	{
 		execve(path, argv, environ);
 		perror("execve");
-		_exit(1);
+		_exit(127);
 	}
 
 	return (pid);
-}
-
-/**
-* resolve_path - Function that transform cmd into a path
-* @cmd: Command gived by the user
-* Return: Return the path of the commmand on success or -1 if failed
-*/
-char *resolve_path(char *cmd)
-{
-	char *path;
-
-	if (strchr(cmd, '/'))
-	{
-		if (access(cmd, X_OK) != 0)
-			return (NULL);
-		return (strdup(cmd));
-	}
-	path = find_path(cmd);
-	return (path);
 }
