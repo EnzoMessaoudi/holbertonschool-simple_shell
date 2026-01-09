@@ -40,6 +40,25 @@ void print_prompt(void)
 }
 
 /**
+* check_space_tab - Check if the user passed only tabs or spaces
+* @comm: Commmand passed by the user
+* Return: Return 1 if there are only tab or 0 if there is 1 character
+*/
+
+int check_space_tab(const char *comm)
+{
+	if (comm == NULL)
+		return (1);
+	while (*comm)
+	{
+		if (*comm != ' ' && *comm != '\t')
+			return (0);
+		comm++;
+	}
+	return (1);
+}
+
+/**
  * command - Splits a string into tokens
  *
  * @comm: Input string containing the command
@@ -51,12 +70,12 @@ void print_prompt(void)
 int command(char *comm, char **args)
 {
 	int count = 0;
-	char *token = strtok(comm, "  \t");
+	char *token = strtok(comm, " \t");
 
 	while (token != NULL)
 	{
 		args[count++] = token;
-		token = strtok(NULL, " ");
+		token = strtok(NULL, " \t");
 	}
 	args[count] = NULL;
 	return (count);
