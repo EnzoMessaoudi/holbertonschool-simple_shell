@@ -1,3 +1,5 @@
+#include "shell.h"
+
 /**
  * command - Splits a string into tokens
  *

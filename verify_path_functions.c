@@ -1,3 +1,5 @@
+#include "shell.h"
+
 /**
  * find_path - Searches for given filenames in directories listed in PATH
  * @comm: Command passed by the user
