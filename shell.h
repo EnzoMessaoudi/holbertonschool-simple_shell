@@ -15,8 +15,9 @@ extern char **environ;
 int main(int argc, char **argv);
 
 int simple_shell(char *shell_name);
-void remove_quotes(char *str);
 void print_prompt(void);
+int check_space_tab(const char *comm);
+void remove_quotes(char *str);
 int command(char *comm, char **args);
 int handle_success(int result, int *line);
 

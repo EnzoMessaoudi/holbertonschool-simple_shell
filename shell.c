@@ -24,7 +24,7 @@ int simple_shell(char *shell_name)
 		len = strcspn(comm, "\n");
 		if (comm[len] == '\n')
 			comm[len] = '\0';
-		if (comm[0] == '\0' || strspn(comm, " \t") == strlen(comm))
+		if (check_space_tab(comm) == 1)
 		{
 			i++;
 			continue;
