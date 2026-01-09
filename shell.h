@@ -23,6 +23,7 @@ int handle_success(int result, int *line);
 int verify_path(int count, char **str);
 char *resolve_path(char *cmd);
 char *find_path(char *av);
+char *_getenv(const char *name);
 pid_t fork_and_exec(char *path, char **argv);
 
 int verify_env(int count, char **str);
