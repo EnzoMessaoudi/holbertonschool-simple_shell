@@ -24,7 +24,7 @@ int simple_shell(char *shell_name)
 		len = strcspn(comm, "\n");
 		if (comm[len] == '\n')
 			comm[len] = '\0';
-		if (strcmp(comm, "") == 0)
+		if (comm == NULL || comm[0] == '\0')
 		{
 			i++;
 			continue;
