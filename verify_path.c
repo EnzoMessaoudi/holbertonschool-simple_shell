@@ -15,7 +15,7 @@ int verify_path(int count, char **str)
 
 		path = resolve_path(str[0]);
 		if (path == NULL)
-			return (-1);
+			return (127);
 	argv = malloc(sizeof(char *) * (count + 1));
 	if (argv == NULL)
 	{
