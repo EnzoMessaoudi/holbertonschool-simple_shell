@@ -14,11 +14,7 @@ int simple_shell(char *shell_name)
 
 	while (1)
 	{
-		if (isatty(STDIN_FILENO))
-		{
-			printf("$ ");
-			fflush(stdout);
-		}
+		print_prompt();
 		if (getline(&comm, &size, stdin) == -1)
 		{
 			if (isatty(STDIN_FILENO))

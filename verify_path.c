@@ -13,18 +13,9 @@ int verify_path(int count, char **str)
 	int i, status;
 	pid_t pid;
 
-	if (strchr(str[0], '/'))
-	{
-		if (access(str[0], X_OK) != 0)
-			return (-1);
-		path = strdup(str[0]);
-	}
-	else
-	{
-		path = find_path(str[0]);
+		path = resolve_path(str[0]);
 		if (path == NULL)
 			return (-1);
-	}
 	argv = malloc(sizeof(char *) * (count + 1));
 	if (argv == NULL)
 	{
