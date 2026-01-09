@@ -62,3 +62,22 @@ pid_t fork_and_exec(char *path, char **argv)
 
 	return (pid);
 }
+
+/**
+* resolve_path - Function that transform cmd into a path
+* @cmd: Command gived by the user
+* Return: Return the path of the commmand on success or -1 if failed
+*/
+char *resolve_path(char *cmd)
+{
+	char *path;
+
+	if (strchr(cmd, '/'))
+	{
+		if (access(cmd, X_OK) != 0)
+			return (NULL);
+		return (strdup(cmd));
+	}
+	path = find_path(cmd);
+	return (path);
+}

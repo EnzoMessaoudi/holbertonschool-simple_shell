@@ -39,3 +39,15 @@ int handle_success(int result, int *line)
 	}
 	return (1);
 }
+
+/**
+* print_prompt - Function that display the "$" prompt at each loop
+*/
+void print_prompt(void)
+{
+	if (isatty(STDIN_FILENO))
+	{
+		printf("$ ");
+		fflush(stdout);
+	}
+}
