@@ -8,17 +8,23 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <sys/stat.h>
+#include <limits.h>
 
 extern char **environ;
 
+int main(int argc, char **argv);
+
 int simple_shell(char *shell_name);
+int command(char *comm, char **args);
+int handle_success(int result, int *line);
+
 int verify_path(int count, char **str);
+char *find_path(char *av);
+pid_t fork_and_exec(char *path, char **argv);
+
 int verify_env(int count, char **str);
 void _printenv(void);
 int _setenv(const char *name, const char *value, int overwrite);
 int _unsetenv(const char *name);
-int _getpid(void);
-char *find_path(char *av);
-pid_t fork_and_exec(char *path, char **argv);
 
 # endif
