@@ -24,7 +24,7 @@ int simple_shell(char *shell_name)
 		len = strcspn(comm, "\n");
 		if (comm[len] == '\n')
 			comm[len] = '\0';
-		if (check_space_tab(comm) == 1)
+		if (check_space_tab(comm) == 1 || comm == NULL)
 		{
 			i++;
 			continue;
@@ -42,9 +42,9 @@ int simple_shell(char *shell_name)
 			continue;
 		result = verify_path(count, args);
 		last_result = result;
-		if (handle_success(result, &i) == 0)
-			continue;
-		printf("%s: %d: %s : not found\n", shell_name, i++, args[0]);
+		if (result == 127)
+			printf("%s: %d: %s : not found\n", shell_name, i, args[0]);
+		i++;
 	}
 	free(comm);
 	return (0);
