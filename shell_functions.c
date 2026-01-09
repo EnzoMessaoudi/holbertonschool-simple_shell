@@ -51,7 +51,7 @@ void print_prompt(void)
 int command(char *comm, char **args)
 {
 	int count = 0;
-	char *token = strtok(comm, " ");
+	char *token = strtok(comm, "  \t");
 
 	while (token != NULL)
 	{
