@@ -30,7 +30,7 @@ int simple_shell(char *shell_name)
 			continue;
 		}
 		count = command(comm, args);
-		if (strcmp(args[0], "exit") == 0)
+		if (args[0] != NULL && strcmp(args[0], "exit") == 0)
 		{
 			free(comm);
 			exit(last_result);
