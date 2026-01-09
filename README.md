@@ -116,7 +116,7 @@ To validate the fonctionnality of our shell, we used:
 - /bin/hs  ./hsh (should be the same error)
 
 ## Flowchart
-![Link](Flowshart.png)
+![Link](Flowchart.png)
 
 ## Usefull informations
 shell.h containts all the prototypes.
