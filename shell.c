@@ -29,6 +29,7 @@ int simple_shell(char *shell_name)
 			i++;
 			continue;
 		}
+		remove_quotes(comm);
 		count = command(comm, args);
 		if (args[0] != NULL && strcmp(args[0], "exit") == 0)
 		{
