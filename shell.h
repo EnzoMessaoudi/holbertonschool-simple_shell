@@ -15,10 +15,12 @@ extern char **environ;
 int main(int argc, char **argv);
 
 int simple_shell(char *shell_name);
+void print_prompt(void);
 int command(char *comm, char **args);
 int handle_success(int result, int *line);
 
 int verify_path(int count, char **str);
+char *resolve_path(char *cmd);
 char *find_path(char *av);
 pid_t fork_and_exec(char *path, char **argv);
 
